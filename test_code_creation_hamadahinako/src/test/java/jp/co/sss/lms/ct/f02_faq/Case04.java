@@ -46,7 +46,7 @@ public class Case04 {
 		goTo("http://localhost:8080/lms/");
 		
 		assertEquals("ログイン | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, "case04", "showLogin");
+		getEvidence(new Object() {}, "case04", "01_showLogin");
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class Case04 {
 		password.clear();
 		password.sendKeys("StudentAA01Pass");
 		
-		getEvidence(new Object() {}, "case04", "inputFilled");
+		getEvidence(new Object() {}, "case04", "02_inputFilled");
 		
 		loginButton.click();
 		
@@ -71,7 +71,7 @@ public class Case04 {
 		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
 		
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, "case04", "courseDetail");
+		getEvidence(new Object() {}, "case04", "03_courseDetail");
 	}
 
 	@Test
@@ -81,7 +81,7 @@ public class Case04 {
 		WebElement dropdownButton = webDriver.findElement(By.className("dropdown-toggle"));
 		dropdownButton.click();
 		
-		getEvidence(new Object() {}, "case04", "showDropdown");
+		getEvidence(new Object() {}, "case04", "04_showDropdown");
 		
 		WebElement dropdown = webDriver.findElement(By.className("dropdown-menu"));
 		WebElement helpLink = dropdown.findElement(By.linkText("ヘルプ"));
@@ -93,7 +93,7 @@ public class Case04 {
 		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/help"));
 		
 		assertEquals("ヘルプ | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, "case04", "help");
+		getEvidence(new Object() {}, "case04", "05_help");
 	}
 
 	@Test
@@ -115,7 +115,7 @@ public class Case04 {
         }
         
 		assertEquals("よくある質問 | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, "case04", "faq");
+		getEvidence(new Object() {}, "case04", "06_faq");
 	}
 
 }
