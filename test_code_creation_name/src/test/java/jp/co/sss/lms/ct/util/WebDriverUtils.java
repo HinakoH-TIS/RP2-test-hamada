@@ -98,6 +98,25 @@ public class WebDriverUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * エビデンス取得（フォルダ指定、サフィックスあり）
+	 * @param instance
+	 * @param path evidence配下のフォルダ名
+	 * @param suffix
+	 */
+	public static void getEvidence(Object instance, String path, String suffix) {
+		File tempFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+		try {
+			String className = instance.getClass().getEnclosingClass().getSimpleName();
+			String methodName = instance.getClass().getEnclosingMethod().getName();
+			File file = new File("evidence\\" + path);
+			file.mkdir();
+			Files.move(tempFile, new File("evidence\\" + path + "\\" + className + "_" + methodName + "_" + suffix+ ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * エビデンス取得（サフィックスあり）
