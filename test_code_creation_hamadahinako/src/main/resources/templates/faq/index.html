@@ -53,11 +53,11 @@
 				<tbody>
 					<tr th:each="faq, status: ${faqList}">
 						<td>
-							<dl id="question-h[${status.index}]">
+							<dl th:id="'question-h' + ${status.index}">
 								<dt class="mb10" style="cursor: pointer">
 									<span class="text-primary mr10">Q.</span><span th:text="${faq.question}"></span>
 								</dt>
-								<dd id="answer-h[${status.index}]" class="dn">
+								<dd th:id="'answer-h' + ${status.index}" class="dn">
 									<span class="text-warning mr10">A.</span> <span th:text="${faq.answer}"></span>
 								</dd>
 							</dl>
