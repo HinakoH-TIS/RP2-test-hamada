@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 @DisplayName("ケース05 キーワード検索 正常系")
 public class Case05 {
 	
-	private String filePath = "case05";
+	private String caseNo = "case05";
 
 	/** 前処理 */
 	@BeforeAll
@@ -52,7 +52,7 @@ public class Case05 {
 		goTo("http://localhost:8080/lms/");
 		
 		assertEquals("ログイン | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, filePath , "01_showLogin");
+		getEvidence(new Object() {}, caseNo , "01_showLogin");
 	}
 
 	@Test
@@ -68,7 +68,7 @@ public class Case05 {
 		password.clear();
 		password.sendKeys("StudentAA01Pass");
 		
-		getEvidence(new Object() {}, filePath, "01_inputFilled");
+		getEvidence(new Object() {}, caseNo, "01_inputFilled");
 		
 		loginButton.click();
 		
@@ -77,7 +77,7 @@ public class Case05 {
 		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
 		
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, filePath, "02_courseDetail");
+		getEvidence(new Object() {}, caseNo, "02_courseDetail");
 	}
 	
 	@Test
@@ -87,7 +87,7 @@ public class Case05 {
 		WebElement dropdownButton = webDriver.findElement(By.className("dropdown-toggle"));
 		dropdownButton.click();
 		
-		getEvidence(new Object() {}, filePath, "01_showDropdown");
+		getEvidence(new Object() {}, caseNo, "01_showDropdown");
 		
 		WebElement dropdown = webDriver.findElement(By.className("dropdown-menu"));
 		WebElement helpLink = dropdown.findElement(By.linkText("ヘルプ"));
@@ -99,7 +99,7 @@ public class Case05 {
 		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/help"));
 		
 		assertEquals("ヘルプ | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, filePath, "02_help");
+		getEvidence(new Object() {}, caseNo, "02_help");
 	}
 
 	@Test
@@ -120,7 +120,7 @@ public class Case05 {
         }
         
 		assertEquals("よくある質問 | LMS", webDriver.getTitle());
-		getEvidence(new Object() {}, filePath, "01_faq");
+		getEvidence(new Object() {}, caseNo, "01_faq");
 	}
 	@Test
 	@Order(5)
@@ -133,7 +133,7 @@ public class Case05 {
 		keyWordInput.clear();
 		keyWordInput.sendKeys(keyWord);
 		
-		getEvidence(new Object() {}, filePath, "01_keyWordFilled");
+		getEvidence(new Object() {}, caseNo, "01_keyWordFilled");
 		
 		searchButton.click();
 		
@@ -143,7 +143,7 @@ public class Case05 {
 			assertThat(result.getText(), is(containsString(keyWord)));
 		}
 		
-		getEvidence(new Object() {}, filePath, "02_faqResult");
+		getEvidence(new Object() {}, caseNo, "02_faqResult");
 	}
 	
 	@Test
@@ -155,7 +155,7 @@ public class Case05 {
 		clearButton.click();
 		
 		assertEquals("", keyWordInput.getText());
-		getEvidence(new Object() {}, filePath, "01_keyWordCleared");
+		getEvidence(new Object() {}, caseNo, "01_keyWordCleared");
 	}
 
 }
