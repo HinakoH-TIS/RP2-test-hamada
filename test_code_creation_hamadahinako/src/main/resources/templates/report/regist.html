@@ -20,7 +20,10 @@
 						<label for="intFieldName_${i}" class="col-sm-2 control-label">学習項目</label>
 						<div class="col-sm-6">
 							<input type="text" th:id="|intFieldName_${i}|" th:name="|intFieldNameArray[${i}]|" class="form-control" 
-								th:value="*{intFieldNameArray[__${i}__]}" th:errorclass="errorInput" maxlength="100"  />
+								th:value="*{intFieldNameArray[__${i}__]}" th:errorclass="errorInput" />
+							<p class="help-inline error" th:if="${#fields.hasErrors('intFieldNameArray[' + i + ']')}">
+								<span th:errors="*{intFieldNameArray[__${i}__]}"></span>
+							</p>
 						</div>
 						<label for="intFieldValue_${i}" class="col-sm-1 control-label">理解度</label>
 						<div class="col-sm-2">
@@ -29,6 +32,9 @@
 								<option th:each="j : *{#numbers.sequence(1, intelligibilityNum)}" th:name="|intFieldValue_$[i]|"
 									th:value="${j}" th:selected="*{intFieldValueArray[__${i}__]} == ${j}">[[${j}]]</option>
 							</select>
+							<p class="help-inline error" th:if="${#fields.hasErrors('intFieldValueArray[' + i + ']')}">
+								<span th:errors="*{intFieldValueArray[__${i}__]}"></span>
+							</p>
 						</div>
 					</div>
 				</fieldset>
@@ -53,6 +59,10 @@
 						<div class="col-lg-10">
 							<textarea class="form-control" rows="3" th:id="|content_${stat.index}|" th:name="|contentArray[${stat.index}]|" 
 								th:errorclass="errorInput">[[*{contentArray[__${stat.index}__]}]]</textarea>
+							<p class="help-inline error"
+								th:if="${#fields.hasErrors('contentArray[' + stat.index + ']')}">
+								<span th:errors="*{contentArray[__${stat.index}__]}"></span>
+							</p>
 						</div>
 					</div>
 				</fieldset>
