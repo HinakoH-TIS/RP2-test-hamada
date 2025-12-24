@@ -77,6 +77,7 @@ public class Case17 {
 	@Order(3)
 	@DisplayName("テスト03 「同意します」チェックボックスにチェックを入れ「次へ」ボタン押下")
 	void test03() {
+		
 		WebElement checkBox = webDriver.findElement(By.cssSelector("input[type='checkbox']"));
 		WebElement nextButton = webDriver.findElement(By.className("btn-primary"));
 		
