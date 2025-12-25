@@ -6,6 +6,10 @@ public class Constant {
 	public static final String PASSWORD_FORMAT_ERROR = "StudentAAPass";
 	public static final String FIRST_LOGIN_USER = "StudentAA04";
 	
+	public static final String NOTES_TOO_LONG = "ぱおでいへぞねぽやもゖのろぴりみふもぽつとゃゕほもあにごやこけや"
+			+ "んつぉぃゃぶじてけのこたぽむひちしれらふきくぉはゕゑゔろゑぢゎはちだすかひゃらぅよきめぷでかさほげせめじ"
+			+ "ぶすへろせぎこばほだっやでみほぶぃ";
+	
 	public static final String INPUT_ERROR_STRING =  
 			"にはyうゕNれこぶxxっふeしそちぜにあAまQうomまPばむぜれみゖこQぺoゃぺぽuずUぃびw"
 			+ "ぐおゆZづべぞZKきずかせwゑmゅLぎnすrばどゃさqあぼなぬだHUちIもmゅXへぢZかくpwちCyををざsうんえげこ"
