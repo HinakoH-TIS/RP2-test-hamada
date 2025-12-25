@@ -131,18 +131,21 @@ public class Case13 {
 		
 		assertEquals("ITリテラシー① | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_exam");
-		
-		scrollBy("document.body.scrollHeight");
-		getEvidence(new Object() {}, caseNo, "02_examBottom");
 	}
 
 	@Test
 	@Order(6)
 	@DisplayName("テスト06 未回答の状態で「確認画面へ進む」ボタンを押下し試験回答確認画面に遷移")
 	void test06(){
-		scrollTo("document.body.scrollHeight");
 		WebElement toConfirmationButton = webDriver.findElement(By.cssSelector("input[type='submit']"
 				+ "[value='確認画面へ進む']"));
+		
+		//1問ごとに未回答状態のエビデンス取得
+		for (int i = 1; i <= 12 ; i++) {
+			String suffix = "blankAnswer" + String.format("%02d", i);
+			getEvidence(new Object() {}, caseNo, suffix);
+			scrollBy("360");
+		}
 		
 		toConfirmationButton.click();
 		
