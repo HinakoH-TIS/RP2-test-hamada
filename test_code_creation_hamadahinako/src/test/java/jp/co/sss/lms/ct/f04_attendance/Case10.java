@@ -98,7 +98,7 @@ public class Case10 {
 		clockInButton.click();
 		
 		//ダイアログにフォーカスして「OK」ボタンを押す
-		webDriver.switchTo().alert().accept();;
+		webDriver.switchTo().alert().accept();
 		
 		//メッセージが表示されるまで待機
 		visibilityTimeout(By.className("alert-info"), 10);
@@ -116,7 +116,7 @@ public class Case10 {
 		clockOutButton.click();
 		
 		//ダイアログにフォーカスして「OK」ボタンを押す
-		webDriver.switchTo().alert().accept();;
+		webDriver.switchTo().alert().accept();
 		
 		//メッセージが表示されるまで待機
 		visibilityTimeout(By.className("alert-info"), 10);
