@@ -5,7 +5,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.Duration;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
@@ -18,9 +17,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import jp.co.sss.lms.ct.util.Constant;
 
@@ -78,10 +75,8 @@ public class Case12 {
 		getEvidence(new Object() {}, caseNo, "01_inputFilled");
 
 		loginButton.click();
-		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
+
+		waitForUrlToBe("http://localhost:8080/lms/course/detail");
 
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "02_courseDetail");
@@ -94,9 +89,7 @@ public class Case12 {
 		WebElement attendanceButton = webDriver.findElement(By.linkText("勤怠"));
 		attendanceButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/attendance/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/attendance/detail");
 		
 		assertEquals("勤怠情報変更｜LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_attendance");
@@ -110,9 +103,7 @@ public class Case12 {
 		
 		editAttendanceButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/attendance/update"));
+		waitForUrlToBe("http://localhost:8080/lms/attendance/update");
 		
 		assertEquals("勤怠情報変更｜LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_attendanceEdit");

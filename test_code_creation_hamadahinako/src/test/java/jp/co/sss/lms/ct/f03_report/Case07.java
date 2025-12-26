@@ -16,8 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * 結合テスト レポート機能
@@ -69,9 +67,7 @@ public class Case07 {
 
 		loginButton.click();
 
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/course/detail");
 
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "02_courseDetail");
@@ -87,9 +83,7 @@ public class Case07 {
 				By.xpath("//*[@id=\"main\"]/div/div[3]/div[2]/table/tbody/tr[4]/td[5]/form/input[3]"));
 		detailButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/section/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/section/detail");
 		
 		WebElement sectionTitle = webDriver.findElement(By.xpath("//*[@id=\"sectionDetail\"]/h2"));
 		
@@ -107,9 +101,7 @@ public class Case07 {
 											+ "[value='日報【デモ】を提出する']"));
 		toReportPageButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/report/regist"));
+		waitForUrlToBe("http://localhost:8080/lms/report/regist");
 		
 		assertEquals("レポート登録 | LMS" , webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_dailyReport");

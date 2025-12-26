@@ -3,7 +3,6 @@ package jp.co.sss.lms.ct.f02_faq;
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.Duration;
 import java.util.Set;
 
 import org.junit.jupiter.api.AfterAll;
@@ -15,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * 結合テスト よくある質問機能
@@ -66,9 +63,7 @@ public class Case04 {
 		
 		loginButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/course/detail");
 		
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, "case04", "02_courseDetail");
@@ -88,9 +83,7 @@ public class Case04 {
 		
 		helpLink.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/help"));
+		waitForUrlToBe("http://localhost:8080/lms/help");
 		
 		assertEquals("ヘルプ | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, "case04", "02_help");

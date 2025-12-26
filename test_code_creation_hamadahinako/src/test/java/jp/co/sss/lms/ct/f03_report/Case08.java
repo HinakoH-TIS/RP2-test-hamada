@@ -5,8 +5,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * 結合テスト レポート機能
@@ -85,9 +81,7 @@ public class Case08 {
 				By.xpath("//*[@id=\"main\"]/div/div[2]/div[2]/table/tbody/tr[2]/td[5]/form/input[3]"));
 		detailButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/section/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/section/detail");
 		
 		WebElement sectionTitle = webDriver.findElement(By.xpath("//*[@id=\"sectionDetail\"]/h2"));
 		
@@ -170,9 +164,7 @@ public class Case08 {
 		
 		detailButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/report/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/report/detail");
 		
 		assertEquals("レポート詳細 | LMS" , webDriver.getTitle());
 		

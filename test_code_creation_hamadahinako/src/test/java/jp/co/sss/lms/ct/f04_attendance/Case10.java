@@ -5,8 +5,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -16,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * 結合テスト 勤怠管理機能
@@ -69,9 +65,7 @@ public class Case10 {
 
 		loginButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/course/deetail");
 
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "02_courseDetail");
@@ -84,9 +78,7 @@ public class Case10 {
 		WebElement attendanceButton = webDriver.findElement(By.linkText("勤怠"));
 		attendanceButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/attendance/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/attendance/detail");
 		
 		assertEquals("勤怠情報変更｜LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_attendance");

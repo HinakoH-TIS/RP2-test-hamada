@@ -5,7 +5,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.Duration;
 import java.util.Date;
 
 import org.junit.jupiter.api.AfterAll;
@@ -17,8 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * 結合テスト 試験実施機能
@@ -73,9 +70,7 @@ public class Case13 {
 
 		loginButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
+		waitForUrlToBe("http://localhost:8080/lms/course/detail");
 
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "02_courseDetail");
@@ -109,9 +104,7 @@ public class Case13 {
 		
 		detailButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/exam/start"));
+		waitForUrlToBe("http://localhost:8080/lms/exam/start");
 		
 		assertEquals("試験【ITリテラシー①】 | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_examStart");
@@ -125,9 +118,7 @@ public class Case13 {
 		
 		startExamButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/exam/question"));
+		waitForUrlToBe("http://localhost:8080/lms/exam/question");
 		
 		assertEquals("ITリテラシー① | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_exam");
@@ -149,9 +140,7 @@ public class Case13 {
 		
 		toConfirmationButton.click();
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/exam/answerCheck"));
+		waitForUrlToBe("http://localhost:8080/lms/exam/answerCheck");
 		
 		assertEquals("ITリテラシー① | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "01_answerConfirmation");
@@ -175,9 +164,7 @@ public class Case13 {
 		//ダイアログにフォーカスして「OK」ボタンを押す
 		webDriver.switchTo().alert().accept();;
 		
-		//画面遷移が完了するまで待機
-		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/exam/result"));
+		waitForUrlToBe("http://localhost:8080/lms/exam/result");
 		
 		WebElement sectionName = webDriver.findElement(By.tagName("h2"));
 		
@@ -198,7 +185,7 @@ public class Case13 {
 		
 		returnButton.click();
 		
-		pageLoadTimeout(10);
+		waitForUrlToBe("http://localhost:8080/lms/exam/start");
 		
 		//過去の試験結果の一番下の行を取得し、点数が0.0点になっているか確認
 		WebElement score = webDriver.findElement(By.xpath("//*[@id=\"main\"]/div/table[2]/tbody/tr[last()]/td[2]"));
