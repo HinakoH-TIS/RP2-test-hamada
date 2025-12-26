@@ -69,7 +69,9 @@ public class Case10 {
 
 		loginButton.click();
 		
-		pageLoadTimeout(10);
+		//画面遷移が完了するまで待機
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.urlToBe("http://localhost:8080/lms/course/detail"));
 
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
 		getEvidence(new Object() {}, caseNo, "02_courseDetail");
@@ -104,7 +106,12 @@ public class Case10 {
 		visibilityTimeout(By.className("alert-info"), 10);
 		
 		WebElement message = webDriver.findElement(By.className("alert-info"));
+		WebElement clockInTime = webDriver.findElement(By.xpath("//*[@id=\"main\"]/div[3]/div/table/tbody/tr[2]/td[3]"));
+		
 		assertThat(message.getText(), is(containsString("勤怠情報の登録が完了しました。")));
+		
+		//出勤列に値があるかを確認
+		assertNotEquals("", clockInTime.getText());
 		getEvidence(new Object() {}, caseNo, "01_attendanceClockedIn");
 	}
 
@@ -122,7 +129,12 @@ public class Case10 {
 		visibilityTimeout(By.className("alert-info"), 10);
 		
 		WebElement message = webDriver.findElement(By.className("alert-info"));
+		WebElement clockOutTime = webDriver.findElement(By.xpath("//*[@id=\"main\"]/div[3]/div/table/tbody/tr[2]/td[4]"));
+		
 		assertThat(message.getText(), is(containsString("勤怠情報の登録が完了しました。")));
+		
+		//出勤列に値があるかを確認
+		assertNotEquals("", clockOutTime.getText());
 		getEvidence(new Object() {}, caseNo, "01_attendanceClockedOut");
 	}
 
