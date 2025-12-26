@@ -146,5 +146,14 @@ public class WebDriverUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 遷移するまで待機
+	 * @param expectedURL 遷移先のURL
+	 */
+	public static void waitForUrlToBe(String expectedURL) {
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.urlToBe(expectedURL));
+	}
 
 }
